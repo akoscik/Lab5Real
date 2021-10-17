@@ -58,8 +58,6 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("com.example.lab5real", Context.MODE_PRIVATE);
         sharedPreferences.edit().putString(MainActivity.userKey, s).apply();
         Log.v("INFO", "This is what the username entered was: " + s);
-        Log.v("INFO", "This is what is stored for shared pref: " + sharedPreferences.getString(userKey,""));
-
         // Actual switching activity part
         startActivity(intent);
     }
