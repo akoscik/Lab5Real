@@ -17,6 +17,13 @@ public class MainActivity extends AppCompatActivity {
     final public static String userKey = "username";
     Button loginButton;
 
+    public void onSubmit(View view){
+        Log.v("INFO", "Button clicked");
+        EditText userName = (EditText) findViewById(R.id.userText);
+        String str = userName.getText().toString();
+        switchActivities(str);
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         // if the username is already entered:
         Log.v("INFO", "This is what is stored for shared pref before if statement: " + sharedPreferences.getString(userKey,""));
         if (sharedPreferences.getString(userKey, "").equals("")){
-            Log.v("INFO", "if statement was excecuted");
+            Log.v("INFO", "if statement was executed");
             setContentView(R.layout.activity_main);
         } else{
             Log.v("INFO", "else statement for sharedPreferences executed");
@@ -39,17 +46,6 @@ public class MainActivity extends AppCompatActivity {
             intent.putExtra("message", usernameEntry);
             startActivity(intent);
         }
-
-        loginButton = findViewById(R.id.button);
-        loginButton.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                Log.v("INFO", "Button clicked");
-                EditText userName = (EditText) findViewById(R.id.userText);
-                String str = userName.getText().toString();
-                switchActivities(str);
-            }
-        });
     }
 
     public void switchActivities(String s){
@@ -59,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra("message", s);
 
         //saving the login info
-        SharedPreferences sharedPreferences = getSharedPreferences("com.example.Lab5Real", Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences("com.example.lab5real", Context.MODE_PRIVATE);
         sharedPreferences.edit().putString(MainActivity.userKey, s).apply();
         Log.v("INFO", "This is what the username entered was: " + s);
         Log.v("INFO", "This is what is stored for shared pref: " + sharedPreferences.getString(userKey,""));

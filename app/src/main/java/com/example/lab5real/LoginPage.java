@@ -56,11 +56,4 @@ public class LoginPage extends AppCompatActivity {
         return true;
     }
 
-    @Override
-    protected void onStop() {
-        super.onStop();
-        String s = getSharedPreferences("com.example.lab5real", Context.MODE_PRIVATE).getString(MainActivity.userKey, "");
-        SharedPreferences sharedPreferences = getSharedPreferences("com.example.Lab5Real", Context.MODE_PRIVATE);
-        sharedPreferences.edit().putString(MainActivity.userKey, s).apply();
-    }
 }
