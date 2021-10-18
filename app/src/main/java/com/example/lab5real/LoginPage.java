@@ -60,7 +60,7 @@ public class LoginPage extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id){
                 Intent intent = new Intent(getApplicationContext(), Activity3.class);
                 intent.putExtra("noteid", position);
-                startActivity(intent); //FIXME says there is an error here because it cannot find Note activity in manifest
+                startActivity(intent);
             }
         });
 
