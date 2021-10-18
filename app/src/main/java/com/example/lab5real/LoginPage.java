@@ -33,11 +33,11 @@ public class LoginPage extends AppCompatActivity {
         setContentView(R.layout.activity_login_page);
 
         // Display welcome message
-        Intent intent = getIntent();
-        usernameEntry = intent.getStringExtra("message");
+        SharedPreferences sharedPreferences = getSharedPreferences("com.example.lab5real", Context.MODE_PRIVATE);
+        String usernameEntry = sharedPreferences.getString("username", "");
+        Log.v("INFO", "THIS IS WHAT USER IS DISPLAYED AS: " + usernameEntry);
         loginTextDisplay = findViewById(R.id.userDisplay);
         loginTextDisplay.setText("Welcome " + usernameEntry + "!");
-
 
         //get sqLiteDatabase instance
         Context context = getApplicationContext();
@@ -45,9 +45,7 @@ public class LoginPage extends AppCompatActivity {
 
         //initialize notes class variable using readNote()
         DBHelper helper = new DBHelper(sqLiteDatabase);
-        Log.v("INFO", usernameEntry);
         notes = helper.readNotes(usernameEntry);
-
 
         ArrayList<String> displayNotes = new ArrayList<>();
         for(Note note : notes){
@@ -57,12 +55,12 @@ public class LoginPage extends AppCompatActivity {
         ListView listView = (ListView) findViewById(R.id.notesListView);
         listView.setAdapter(adapter);
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id){
-                Intent intent = new Intent(getApplicationContext(), Note.class);
+                Intent intent = new Intent(getApplicationContext(), Activity3.class);
                 intent.putExtra("noteid", position);
-                startActivity(intent);
+                startActivity(intent); //FIXME says there is an error here because it cannot find Note activity in manifest
             }
         });
 

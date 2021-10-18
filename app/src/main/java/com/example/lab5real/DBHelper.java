@@ -2,6 +2,7 @@ package com.example.lab5real;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import java.util.ArrayList;
 
@@ -15,11 +16,11 @@ public class DBHelper {
 
     public void createTable(){
         sqLiteDatabase.execSQL("CREATE TABLE IF NOT EXISTS notes " +
-                "(id INTEGER PRIMARY KEY, username TEXT, date TEXT, title TEXT, src TEXT)");
+                "(id INTEGER PRIMARY KEY, username TEXT, date TEXT, title TEXT, content TEXT, src TEXT)");
     }
 
     public ArrayList<Note> readNotes(String username){
-        createTable();;
+        createTable();
         Cursor c = sqLiteDatabase.rawQuery(String.format("SELECT * from notes where username like '%s'", username), null);
 
         int dateIndex = c.getColumnIndex("date");
@@ -47,8 +48,10 @@ public class DBHelper {
     }
 
     public void saveNotes(String username, String title, String content, String date){
+        //used for making a new note. Makes a new table?
         createTable();
-        sqLiteDatabase.execSQL(String.format("INSERT INTO notes (username, date, title, content) VALUES ('%s','%s','%s','%s')",
+        //now we theoretically have a functioning table available
+        sqLiteDatabase.execSQL(String.format("INSERT INTO notes (username, date, title, content) VALUES ('%s', '%s', '%s', '%s')",
                 username, date, title, content));
     }
 

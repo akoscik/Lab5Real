@@ -17,7 +17,6 @@ public class MainActivity extends AppCompatActivity {
     final public static String userKey = "username";
 
     public void onSubmit(View view){
-        Log.v("INFO", "Button clicked");
         EditText userName = (EditText) findViewById(R.id.userText);
         String str = userName.getText().toString();
         switchActivities(str);
