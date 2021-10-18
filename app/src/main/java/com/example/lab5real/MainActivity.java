@@ -15,7 +15,6 @@ import android.widget.EditText;
 public class MainActivity extends AppCompatActivity {
 
     final public static String userKey = "username";
-    Button loginButton;
 
     public void onSubmit(View view){
         Log.v("INFO", "Button clicked");

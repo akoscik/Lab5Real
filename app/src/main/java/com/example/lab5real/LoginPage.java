@@ -38,13 +38,16 @@ public class LoginPage extends AppCompatActivity {
         loginTextDisplay = findViewById(R.id.userDisplay);
         loginTextDisplay.setText("Welcome " + usernameEntry + "!");
 
+
         //get sqLiteDatabase instance
         Context context = getApplicationContext();
         SQLiteDatabase sqLiteDatabase = context.openOrCreateDatabase("notes", Context.MODE_PRIVATE,null);
 
         //initialize notes class variable using readNote()
         DBHelper helper = new DBHelper(sqLiteDatabase);
+        Log.v("INFO", usernameEntry);
         notes = helper.readNotes(usernameEntry);
+
 
         ArrayList<String> displayNotes = new ArrayList<>();
         for(Note note : notes){
@@ -62,7 +65,6 @@ public class LoginPage extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
 
     }
 
